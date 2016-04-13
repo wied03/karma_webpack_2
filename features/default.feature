@@ -1,7 +1,17 @@
 Feature: default
 
   Scenario: Standard case passes
-    Given a complete scenario
+    Given the passing tests tests
+    And the simple.js Karma config file
+    When I run the Karma test
+    Then the test passes with JSON results:
+    """
+    {
+        "something nested": {
+            "should eq 42": "PASSED"
+        }
+    }
+    """
 
   Scenario: Standard case fails with source maps
     Given a complete scenario

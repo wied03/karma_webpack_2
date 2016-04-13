@@ -4,7 +4,9 @@
   "description": "Karma webpack loader",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber.js"
+    "cucumber": "cucumber.js",
+    "eslint": "eslint index.js lib features",
+    "jshint": "jshint index.js lib test"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,11 @@
   "homepage": "https://github.com/wied03/karma_webpack_2#readme",
   "devDependencies": {
     "cucumber": "^0.10.2",
-    "karma": "^0.13.22"
+    "eslint": "^2.7.0",
+    "jasmine-core": "^2.4.1",
+    "jshint": "^2.9.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "opal-webpack": "^1.0.1"
   }
 }
