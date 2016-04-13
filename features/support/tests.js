@@ -18,6 +18,6 @@ module.exports = function () {
 
   this.Then(/^the test passes with JSON results:$/, function (expectedJson, callback) {
     // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
-  });
+    callback(null, 'pending')
+  })
 }

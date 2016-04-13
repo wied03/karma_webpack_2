@@ -25,6 +25,7 @@
     "jshint": "^2.9.1",
     "karma": "^0.13.22",
     "karma-jasmine": "^0.3.8",
-    "opal-webpack": "^1.0.1"
+    "opal-webpack": "^1.0.1",
+    "rimraf": "^2.5.2"
   }
 }
