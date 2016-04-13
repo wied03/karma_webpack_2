@@ -1,0 +1,23 @@
+{
+  "name": "karma_webpack_2",
+  "version": "1.0.0",
+  "description": "Karma webpack loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wied03/karma_webpack_2.git"
+  },
+  "author": "wied03",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/wied03/karma_webpack_2/issues"
+  },
+  "homepage": "https://github.com/wied03/karma_webpack_2#readme",
+  "devDependencies": {
+    "cucumber": "^0.10.2",
+    "karma": "^0.13.22"
+  }
+}
