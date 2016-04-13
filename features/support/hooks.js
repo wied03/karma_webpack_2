@@ -1,16 +1,14 @@
 'use strict'
 
-const fs = require('fs')
-const rimraf = require('rimraf')
+const Promise = require('bluebird')
+const rimraf = Promise.promisify(require('rimraf'))
+const mkdir = Promise.promisify(require('fs').mkdir)
 
 module.exports = function () {
-  this.Before(function (scenario, callback) {
+  this.Before(function () {
     const tmpDir = this.karmaTmpDir
-    rimraf(tmpDir, function (err) {
-      if (err) {
-        return callback(err)
-      }
-      fs.mkdir(tmpDir, callback)
+    return rimraf(tmpDir).then(() => {
+      return mkdir(tmpDir)
     })
   })
 }

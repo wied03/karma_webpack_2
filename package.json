@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/wied03/karma_webpack_2#readme",
   "devDependencies": {
+    "bluebird": "^3.3.5",
     "cucumber": "^0.10.2",
     "eslint": "^2.7.0",
+    "fs-extra": "^0.26.7",
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "karma": "^0.13.22",
