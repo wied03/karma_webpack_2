@@ -1,8 +1,8 @@
 'use strict'
 
-const Promise = require('bluebird')
-const rimraf = Promise.promisify(require('rimraf'))
-const mkdir = Promise.promisify(require('fs').mkdir)
+const bluebird = require('bluebird')
+const rimraf = bluebird.promisify(require('rimraf'))
+const mkdir = bluebird.promisify(require('fs').mkdir)
 
 module.exports = function () {
   this.Before(function () {

@@ -4,5 +4,8 @@
   "strict": true,
   "node": true,
   "globals": {
+    "describe": true,
+    "it": true,
+    "expect": true
   }
 }

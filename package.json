@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cucumber": "cucumber.js",
-    "eslint": "eslint index.js lib test features",
+    "eslint": "eslint index.js lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
     "jshint": "jshint index.js lib test features"
   },
   "repository": {

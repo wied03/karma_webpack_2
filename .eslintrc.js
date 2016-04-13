@@ -21,7 +21,9 @@ module.exports = {
         "node": true
     },
     "globals": {
-
+        "describe": true,
+        "it": true,
+        "expect": true
     },
     "extends": "eslint:recommended"
 };

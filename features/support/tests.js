@@ -1,8 +1,8 @@
 'use strict'
 
-const Promise = require('bluebird')
+const bluebird = require('bluebird')
 const path = require('path')
-const copy = Promise.promisify(require('fs-extra').copy)
+const copy = bluebird.promisify(require('fs-extra').copy)
 
 module.exports = function () {
   const integrationPath = path.join(__dirname, '../../test/integration')
