@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "cucumber": "cucumber.js",
-    "eslint": "eslint index.js lib features",
-    "jshint": "jshint index.js lib test"
+    "eslint": "eslint index.js lib test features",
+    "jshint": "jshint index.js lib test features"
   },
   "repository": {
     "type": "git",
