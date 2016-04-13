@@ -1,7 +1,7 @@
 Feature: default
 
   Scenario: Standard case passes
-    Given the passing tests tests
+    Given the 'passing tests' tests
     And the simple.js Karma config file
     When I run the Karma test
     Then the test passes with JSON results:
