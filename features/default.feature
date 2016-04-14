@@ -21,6 +21,19 @@ Feature: default
     When I run the Karma test
     Then the existing webpack bundle is left intact
 
+  Scenario: Another loader
+    Given the 'opal' tests
+    And the opal.js Karma config file
+    When I run the Karma test
+    Then the test passes with JSON results:
+    """
+    {
+        "A suite": {
+            "contains spec with an expectation": "PASSED"
+        }
+    }
+    """
+
   Scenario: Standard case fails with source maps
     Given a complete scenario
 
