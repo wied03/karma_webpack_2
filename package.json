@@ -1,12 +1,13 @@
 {
-  "name": "karma_webpack_2",
+  "name": "karma-webpack_2",
   "version": "1.0.0",
   "description": "Karma webpack loader",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "cucumber": "cucumber.js",
-    "eslint": "eslint index.js lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
-    "jshint": "jshint index.js lib test features"
+    "eslint": "eslint lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
+    "jshint": "jshint lib test features",
+    "prepublish": "require-self"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,14 @@
   "homepage": "https://github.com/wied03/karma_webpack_2#readme",
   "devDependencies": {
     "bluebird": "^3.3.5",
+    "chai": "^3.5.0",
     "cucumber": "^0.10.2",
     "eslint": "^2.7.0",
     "fs-extra": "^0.26.7",
     "jasmine-core": "^2.4.1",
     "jshint": "^2.9.1",
     "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
     "karma-jasmine": "^0.3.8",
     "karma-orspec-json-reporter": "file:./test/karma-orspec-json-reporter",
     "karma-phantomjs2-launcher": "^0.5.0",

@@ -3,6 +3,7 @@
 const bluebird = require('bluebird')
 const path = require('path')
 const copy = bluebird.promisify(require('fs-extra').copy)
+const exec = require('child_process').exec
 
 module.exports = function () {
   const integrationPath = path.join(__dirname, '../../test/integration')
@@ -16,12 +17,21 @@ module.exports = function () {
 
   this.Given(/^the (\S+) Karma config file$/, function (config) {
     const fullConfigPath = path.join(__dirname, '../../test/integration/karma_configs', config)
-    return copy(fullConfigPath, path.join(this.karmaTmpDir, 'karma_config.js'))
+    return copy(fullConfigPath, path.join(this.karmaTmpDir, 'karma.conf.js'))
   })
 
   this.When(/^I run the Karma test$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending')
+    exec('karma start --single-run --no-colors --log-level=debug', {
+      cwd: this.karmaTmpDir
+    }, function (err, stdout, stderr) {
+      if (err) {
+        console.log('Karma failed!')
+        console.log(`Stdout: ${stdout}`)
+        console.log(`Stdout: ${stderr}`)
+        return callback(err)
+      }
+      return callback()
+    })
   })
 
   this.Then(/^the test passes with JSON results:$/, function (expectedJson, callback) {
