@@ -12,8 +12,17 @@ Feature: default
         }
     }
     """
-    And existing webpack bundle is left intact
-    And webpack info level logging occurs
+    And webpack logged informational messages
+
+  Scenario: Existing webpack bundle
+    Given the 'passing' tests
+    And an existing webpack bundle
+    And the simple.js Karma config file
+    When I run the Karma test
+    Then the existing webpack bundle is left intact
+
+  Scenario: Another loader
+    Given a complete scenario
 
   Scenario: Standard case fails with source maps
     Given a complete scenario

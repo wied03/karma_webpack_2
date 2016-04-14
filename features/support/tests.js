@@ -23,9 +23,11 @@ module.exports = function () {
   })
 
   this.When(/^I run the Karma test$/, function (callback) {
+    const cucumber = this;
     exec('karma start --single-run --no-colors --log-level=debug', {
       cwd: this.karmaTmpDir
     }, function (err, stdout, stderr) {
+      cucumber.karmaOutput = stdout;
       if (err) {
         console.log('Karma failed!')
         console.log(`Stdout: ${stdout}`)
@@ -44,5 +46,9 @@ module.exports = function () {
       const actualClean = JSON.stringify(JSON.parse(data.toString()))
       expect(actualClean).to.eq(expectedClean)
     })
+  })
+
+  this.Then(/^webpack logged informational messages$/, function () {
+    expect(this.karmaOutput).to.eq('foo')
   })
 }
