@@ -21,9 +21,6 @@ Feature: default
     When I run the Karma test
     Then the existing webpack bundle is left intact
 
-  Scenario: Another loader
-    Given a complete scenario
-
   Scenario: Standard case fails with source maps
     Given a complete scenario
 
