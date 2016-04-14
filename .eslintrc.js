@@ -23,7 +23,8 @@ module.exports = {
     "globals": {
         "describe": true,
         "it": true,
-        "expect": true
+        "expect": true,
+        "Opal": true
     },
     "extends": "eslint:recommended"
 };

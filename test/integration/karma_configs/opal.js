@@ -22,10 +22,10 @@ module.exports = function(config) {
       entry: ['./entry_point.js'],
       module: {
         loaders: [
-            {
-                test: /\.rb$/,
-                loader: 'opal-webpack'
-            }
+          {
+            test: /\.rb$/,
+            loader: 'opal-webpack'
+          }
         ]
       }
     },

@@ -1,6 +1,6 @@
 'use strict'
 
-var dependency = require('./dependency.rb')
+require('./dependency.rb')
 
 describe('A suite', function() {
   it('contains spec with an expectation', function() {

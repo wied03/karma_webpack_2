@@ -33,6 +33,18 @@ Feature: default
         }
     }
     """
+  Scenario: Standard case test fails
+    Given the 'failing' tests
+    And the simple.js Karma config file
+    When I run the Karma test
+    Then the test fails with JSON results:
+    """
+    {
+        "A suite": {
+            "contains spec with an expectation": "FAILED"
+        }
+    }
+    """
 
   Scenario: Standard case fails with source maps
     Given a complete scenario
