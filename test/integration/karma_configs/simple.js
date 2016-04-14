@@ -13,9 +13,11 @@ module.exports = function(config) {
     frameworks: ['webpack', 'jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [
-      'entry_point.js'
-    ],
+    files: [],
+
+    webpack: {
+        entryPoint: 'entry_point.js'
+    },
 
     // list of files to exclude
     exclude: [],
