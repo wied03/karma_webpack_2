@@ -6,7 +6,7 @@
   "scripts": {
     "cucumber": "cucumber.js",
     "eslint": "eslint lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
-    "jshint": "jshint lib test features",
+    "jshint": "jshint lib test features --exclude test/integration/.*",
     "prepublish": "require-self"
   },
   "repository": {
