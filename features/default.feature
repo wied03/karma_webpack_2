@@ -33,7 +33,7 @@ Feature: default
         }
     }
     """
-  Scenario: Standard case test fails
+  Scenario: Test fails
     Given the 'failing' tests
     And the simple.js Karma config file
     When I run the Karma test
@@ -46,11 +46,22 @@ Feature: default
     }
     """
 
-  Scenario: Standard case fails with source maps
-    Given a complete scenario
+  Scenario: Source maps enabled in result
+    Given the 'opal_fail' tests
+    And the source_maps_result.js Karma config file
+    When I run the Karma test
+    Then the test fails
+    And the Karma output contains 'opal line number here'
+
+  Scenario: Source maps available
+    Given the 'opal_fail' tests
+    And the source_maps_avail.js Karma config file
+    When I run the Karma test
+    Then the test fails
+    And the Karma output does not contain 'opal line number here'
+    And the following source maps exist:
+    | File                    | Map URL          | Original File           | Sources                 |
+    | /base/spec/main_spec.js | main_spec.js.map | /base/spec/main_spec.js | /base/spec/main_spec.rb |
 
   Scenario: Handles webpack compilation errors
-    Given a complete scenario
-
-  Scenario: Standard case fails without source maps
     Given a complete scenario
