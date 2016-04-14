@@ -49,6 +49,6 @@ module.exports = function () {
   })
 
   this.Then(/^webpack logged informational messages$/, function () {
-    expect(this.karmaOutput).to.eq('foo')
+    expect(this.karmaOutput).to.include('chunk    {0} bundle_karma.js')
   })
 }
