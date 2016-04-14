@@ -16,7 +16,7 @@ module.exports = function(config) {
     files: [],
 
     webpack: {
-        entry: ['entry_point.js']
+        entry: ['./entry_point.js']
     },
 
     // list of files to exclude

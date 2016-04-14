@@ -7,14 +7,18 @@ Feature: default
     Then the test passes with JSON results:
     """
     {
-        "something nested": {
-            "should eq 42": "PASSED"
+        "A suite": {
+            "contains spec with an expectation": "PASSED"
         }
     }
     """
     And existing webpack bundle is left intact
+    And webpack info level logging occurs
 
   Scenario: Standard case fails with source maps
+    Given a complete scenario
+
+  Scenario: Handles webpack compilation errors
     Given a complete scenario
 
   Scenario: Standard case fails without source maps

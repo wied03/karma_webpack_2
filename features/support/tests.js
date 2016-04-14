@@ -4,6 +4,8 @@ const bluebird = require('bluebird')
 const path = require('path')
 const copy = bluebird.promisify(require('fs-extra').copy)
 const exec = require('child_process').exec
+const readFile = bluebird.promisify(require('fs').readFile)
+const expect = require('chai').expect
 
 module.exports = function () {
   const integrationPath = path.join(__dirname, '../../test/integration')
@@ -34,8 +36,13 @@ module.exports = function () {
     })
   })
 
-  this.Then(/^the test passes with JSON results:$/, function (expectedJson, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending')
+  this.Then(/^the test passes with JSON results:$/, function (expectedJson) {
+    const expectedClean = JSON.stringify(JSON.parse(expectedJson))
+    const actualFilename = path.resolve(this.karmaTmpDir, 'test_run.json')
+
+    return readFile(actualFilename).then(function(data) {
+      const actualClean = JSON.stringify(JSON.parse(data.toString()))
+      expect(actualClean).to.eq(expectedClean)
+    })
   })
 }
