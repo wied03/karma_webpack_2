@@ -14,19 +14,22 @@ describe('A suite', function() {
     }
     catch (e) {
       StackTrace.fromError(e).then(function(frames) {
-        // TODO: We need to locate the correct frame and we need to add middleware to serve up
-        // the map file on request
+        var theFrame = nill
         frames.forEach(function (frame) {
-          console.log('saw file '+frame.fileName)
+          // TODO: Not finding the frame
+          // TODO: Manually check browser and ensure we're not including the source map
+          if (frame.fileName == 'webpack:///test/dependency.rb') {
+            theFrame = frame
+          }
         })
-        var frame = frames[1]
-        expect(frame.fileName).toBe('dependency.rb')
-        expect(frame.functionName).toBe('howdy')
-        expect(frame.lineNumber).toBe(4)
+        expect(theFrame).not.toBe(null)
+        console.dir(theFrame)
+        expect(theFrame.functionName).toBe('howdy2')
+        expect(theFrame.lineNumber).toBe(4)
         return done()
       }).catch(function(problem) {
-        console.log('could not get stacktrace')
-        done(problem)
+        console.error('Could not get stacktrace')
+        console.dir(problem)
       })
     }
   })

@@ -34,7 +34,7 @@
     "karma-orspec-json-reporter": "file:./test/karma-orspec-json-reporter",
     "karma-phantomjs2-launcher": "^0.5.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "opal-webpack": "https://github.com/cj/opal-webpack.git#fix_for_karma",
+    "opal-webpack": "^1.0.3",
     "require-self": "^0.1.0",
     "rimraf": "^2.5.2",
     "stacktrace-js": "^1.1.0",
