@@ -52,14 +52,14 @@ Feature: default
     And the source_maps_result.js Karma config file
     When I run the Karma test
     Then the test fails
-    And the Karma output contains 'webpack:///test/dependency.rb:4:2'
+    And the Karma output contains 'webpack:///test/dependency.rb:5:11'
 
   Scenario: Source maps enabled in wp but not results
     Given the 'opal_fail' tests
     And the source_maps_avail.js Karma config file
     When I run the Karma test
     Then the test fails
-    And the Karma output does not contain 'webpack:///test/dependency.rb:4:2'
+    And the Karma output does not contain 'webpack:///test/dependency.rb:5:11'
 
   Scenario: Source maps queried from JS
     Given the 'opal_smap_from_js' tests

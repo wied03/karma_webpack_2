@@ -21,8 +21,9 @@ describe('A suite', function() {
           }
         })
         expect(theFrame).not.toBe(null)
-        expect(theFrame.lineNumber).toBe(4)
-        // does not work with Opal until 0.10
+        expect(theFrame.lineNumber).toBe(5)
+        // not sure why this isn't working. the map from webpack looks correct when plugged
+        // in with the stack trace
         // expect(theFrame.functionName).toBe('howdy')
         return done()
       }).catch(function(problem) {
