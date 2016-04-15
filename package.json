@@ -23,6 +23,7 @@
     "bluebird": "^3.3.5",
     "chai": "^3.5.0",
     "cucumber": "^0.10.2",
+    "es6-promise": "^3.1.2",
     "eslint": "^2.7.0",
     "fs-extra": "^0.26.7",
     "jasmine-core": "^2.4.1",
@@ -36,6 +37,7 @@
     "opal-webpack": "https://github.com/cj/opal-webpack.git#fix_for_karma",
     "require-self": "^0.1.0",
     "rimraf": "^2.5.2",
+    "stacktrace-js": "^1.1.0",
     "webpack": "^1.12.15"
   }
 }
