@@ -36,14 +36,22 @@ module.exports = function () {
     })
   })
 
-  this.Then(/^the test (\S+) with JSON results:$/, function (passFail, expectedJson) {
-    const karmaMessaging = `stdout: ${this.karmaOutput}\nstderr:${this.karmaError}`
+  function assertKarmaStatus(world, passFail) {
+    const karmaMessaging = `stdout: ${world.karmaOutput}\nstderr:${world.karmaError}`
     if (passFail === 'passes') {
-      assert(this.karmaSuccess, `Expected Karma to succeed, but it failed! ${karmaMessaging}`)
+      assert(world.karmaSuccess, `Expected Karma to succeed, but it failed! ${karmaMessaging}`)
     }
     else {
-      assert(!this.karmaSuccess, `Expected Karma to fail, but it succeeded! ${karmaMessaging}`)
+      assert(!world.karmaSuccess, `Expected Karma to fail, but it succeeded! ${karmaMessaging}`)
     }
+  }
+
+  this.Then(/^the test fails$/, function () {
+    assertKarmaStatus(this, 'fails')
+  })
+
+  this.Then(/^the test (\S+) with JSON results:$/, function (passFail, expectedJson) {
+    assertKarmaStatus(this, passFail)
     const expectedClean = JSON.stringify(JSON.parse(expectedJson))
     const actualFilename = path.resolve(this.karmaTmpDir, 'test_run.json')
 
@@ -51,6 +59,10 @@ module.exports = function () {
       const actualClean = JSON.stringify(JSON.parse(data.toString()))
       expect(actualClean).to.eq(expectedClean)
     })
+  })
+
+  this.Then(/^the Karma output contains '(.*)'$/, function (output) {
+    expect(this.karmaOutput).to.include(output)
   })
 
   this.Then(/^webpack logged informational messages$/, function () {
