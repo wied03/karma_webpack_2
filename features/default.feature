@@ -68,4 +68,8 @@ Feature: default
     Then the test passes
 
   Scenario: Handles webpack compilation errors
-    Given a complete scenario
+    Given the 'missing_require' tests
+    And the simple.js Karma config file
+    When I run the Karma test
+    Then the test fails
+    And webpack compilation errors are displayed

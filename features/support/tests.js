@@ -83,4 +83,8 @@ module.exports = function () {
       expect(data.toString()).to.eq('foobar')
     })
   })
+
+  this.Then(/^webpack compilation errors are displayed$/, function () {
+    expect(this.karmaOutput).to.match(/Module not found: Error: Cannot resolve 'file' or 'directory' \.\/missing_dependency in .*tmp\/test/)
+  })
 }
