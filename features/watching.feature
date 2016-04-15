@@ -32,6 +32,16 @@ Feature: file watching
     }
     """
 
+  Scenario: Missing dependency added and then corrected
+    Given the 'passing' tests
+    And the simple.js Karma config file
+    And I run the Karma test and keep Karma running
+    And the test passes
+    And I add a spec with a missing dependency and wait
+    And the test fails
+    When I correct the missing dependency and wait
+    Then the test passes
+
   Scenario: Source maps from JS
     Given the 'passing' tests
     And the source_maps_avail.js Karma config file
