@@ -46,8 +46,8 @@ module.exports = function () {
     }
   }
 
-  this.Then(/^the test fails$/, function () {
-    assertKarmaStatus(this, 'fails')
+  this.Then(/^the test (\S+)$/, function (passFail) {
+    assertKarmaStatus(this, passFail)
   })
 
   this.Then(/^the test (\S+) with JSON results:$/, function (passFail, expectedJson) {
@@ -63,6 +63,10 @@ module.exports = function () {
 
   this.Then(/^the Karma output contains '(.*)'$/, function (output) {
     expect(this.karmaOutput).to.include(output)
+  })
+
+  this.Then(/^the Karma output does not contain '(.*)'$/, function (output) {
+    expect(this.karmaOutput).to.not.include(output)
   })
 
   this.Then(/^webpack logged informational messages$/, function () {

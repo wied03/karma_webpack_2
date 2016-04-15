@@ -54,15 +54,18 @@ Feature: default
     Then the test fails
     And the Karma output contains 'webpack:///test/dependency.rb:4:2'
 
-  Scenario: Source maps available
+  Scenario: Source maps enabled in wp but not results
     Given the 'opal_fail' tests
     And the source_maps_avail.js Karma config file
     When I run the Karma test
     Then the test fails
     And the Karma output does not contain 'webpack:///test/dependency.rb:4:2'
-    And the following source maps exist:
-    | File                    | Map URL          | Original File           | Sources                 |
-    | /base/spec/main_spec.js | main_spec.js.map | /base/spec/main_spec.js | /base/spec/main_spec.rb |
+
+  Scenario: Source maps queried from JS
+    Given the 'opal_smap_from_js' tests
+    And the source_maps_avail.js Karma config file
+    When I run the Karma test
+    Then the test passes
 
   Scenario: Handles webpack compilation errors
     Given a complete scenario
