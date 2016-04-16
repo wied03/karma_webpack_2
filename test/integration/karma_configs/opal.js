@@ -13,7 +13,9 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['webpack', 'jasmine'],
+    frameworks: ['jasmine'],
+
+    middleware: ['webpack'],
 
     // list of files / patterns to load in the browser
     files: [],

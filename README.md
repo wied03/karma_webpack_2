@@ -11,6 +11,7 @@ This is a fresh Karma webpack loader whose primary aim is to be test driven and 
 * Webpack configuration specified within Karma config file
 * Source map friendly (can be used automatically in results or made available to frameworks)
 * Allows specifying other files to Karma outside of your webpack bundle
+* Uses in memory filesytem for bundle location (but still allows filesystem caching for loaders like Babel, Opal)
 
 ## Installation:
 
@@ -25,7 +26,8 @@ This is the simplest case:
 module.exports = function(config) {
   config.set({
     files: [],
-    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    frameworks: ['jasmine'], // Jasmine not required, use whichever framework you want
+    middleware: ['webpack'],
     webpack: {
       entry: ['./entry_point.js']
     }
@@ -39,7 +41,8 @@ module.exports = function(config) {
 module.exports = function(config) {
   config.set({
     files: [],
-    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    frameworks: ['jasmine'], // Jasmine not required, use whichever framework you want
+    middleware: ['webpack'],
     webpack: {
       entry: ['./entry_point.js'],
       module: {
@@ -62,7 +65,8 @@ If source maps are enabled in webpack, they will be served to Karma AND displaye
 module.exports = function(config) {
   config.set({
     files: [],
-    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    frameworks: ['jasmine'], // Jasmine not required, use whichever framework you want
+    middleware: ['webpack'],
     webpack: {
       entry: ['./entry_point.js']
     },
@@ -75,7 +79,7 @@ module.exports = function(config) {
 ```
 
 ## Limitations:
-* Does not rely on [webpack dev middleware](https://github.com/webpack/webpack-dev-middleware) due to lack of tests for that project
+* Does not rely on [webpack dev middleware](https://github.com/webpack/webpack-dev-middleware) due to lack of tests for that project. It does however use the [memory-fs filesystem](https://github.com/webpack/memory-fs)
 * Webpack config is not automatically read from `webpack.config.js` for you. You could do that manually in your Karma config for now.
 
 Copyright (c) 2016, BSW Technology Consulting LLC

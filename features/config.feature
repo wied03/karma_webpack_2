@@ -4,6 +4,3 @@ Feature: Customize configuration
 
   Scenario: Webpack debug logging
     Given a complete scenario
-
-  Scenario: Custom output bundle location
-    Given a complete scenario

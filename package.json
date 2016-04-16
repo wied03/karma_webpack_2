@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Karma webpack loader",
   "main": "lib/index.js",
-  "files": ["lib"],
-  "keywords": ["karma-plugin", "webpack", "karma"],
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "karma-plugin",
+    "webpack",
+    "karma"
+  ],
   "scripts": {
     "cucumber": "cucumber.js",
     "eslint": "eslint lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
@@ -42,5 +48,8 @@
     "rimraf": "^2.5.2",
     "stacktrace-js": "^1.1.0",
     "webpack": "^1.12.15"
+  },
+  "dependencies": {
+    "memory-fs": "^0.3.0"
   }
 }
