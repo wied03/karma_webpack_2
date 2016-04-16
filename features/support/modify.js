@@ -9,7 +9,7 @@ module.exports = function () {
     const newSpecFile = path.join(this.testDir, 'new_test.js')
     const specText = "describe('A suite', function() {\n" +
     "it('contains spec 2 with an expectation', function() {\n" +
-    "expect(dependency()).toBe('foobar')\n" +
+    "expect('foobar').toBe('foobar')\n" +
     '})\n' +
     '})'
     return writeFile(newSpecFile, specText)
