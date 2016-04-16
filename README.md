@@ -2,7 +2,7 @@
 
 [![Build Status](http://img.shields.io/travis/wied03/karma_webpack_2/master.svg?style=flat)](http://travis-ci.org/wied03/karma_webpack_2)
 [![Quality](http://img.shields.io/codeclimate/github/wied03/karma_webpack_2.svg?style=flat-square)](https://codeclimate.com/github/wied03/karma_webpack_2)
-[![Version](https://img.shields.io/npm/v/karma_webpack_2.svg?style=flat-square)](https://www.npmjs.com/package/karma_webpack_2)
+[![Version](https://img.shields.io/npm/v/karma-webpack_2.svg?style=flat-square)](https://www.npmjs.com/package/karma-webpack_2)
 
 This is a fresh Karma webpack loader whose primary aim is to be test driven and simple
 (currently still in development)
