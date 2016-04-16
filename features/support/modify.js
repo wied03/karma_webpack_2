@@ -31,4 +31,21 @@ module.exports = function () {
       return writeFile(entryPoint, newEntryPointFile)
     })
   })
+
+  this.Given(/^I add a spec with a missing dependency$/, function() {
+    const newSpecFile = path.join(this.testDir, 'new_test.js')
+    const specText = "var missingDep=require('./missing_dependency')\n" +
+    "describe('A suite', function() {\n" +
+    "it('contains spec 2 with an expectation', function() {\n" +
+    "expect(missingDep()).toBe('foobar')\n" +
+    '})\n' +
+    '})'
+    return writeFile(newSpecFile, specText)
+  })
+
+  this.When(/^I correct the missing dependency$/, function () {
+    const depFile = path.join(this.testDir, 'missing_dependency.js')
+    const fileText = "module.exports = function() { return 'foobar' }"
+    return writeFile(depFile, fileText)
+  })
 }

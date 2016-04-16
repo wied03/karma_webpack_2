@@ -24,12 +24,17 @@ module.exports = function () {
 
       operation.attempt(function(currentAttempt) {
         try {
-          const passString = 'Executed 1 of 1 SUCCESS'
-          const failString = 'Executed 1 of 1 FAIL'
-          const doSee = passFail === 'passes' ? passString : failString
-          expect(world.karmaOutput).to.include(doSee)
-          const doNotSee = passFail === 'passes' ? failString : passString
-          expect(world.karmaOutput).to.not.include(doNotSee)
+          if (passFail === 'errors') {
+            expect(world.karmaOutput).to.include('ERROR')
+          }
+          else {
+            const passString = 'Executed 1 of 1 SUCCESS'
+            const failString = 'Executed 1 of 1 FAIL'
+            const doSee = passFail === 'passes' ? passString : failString
+            expect(world.karmaOutput).to.include(doSee)
+            const doNotSee = passFail === 'passes' ? failString : passString
+            expect(world.karmaOutput).to.not.include(doNotSee)
+          }
           return callback()
         }
         catch (err) {

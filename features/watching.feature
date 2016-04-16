@@ -38,7 +38,7 @@ Feature: File watching
     And I run the Karma test and keep Karma running
     And the test passes
     And I add a spec with a missing dependency
-    And the test fails
+    And the test errors
     When I correct the missing dependency
     Then the test passes
 
