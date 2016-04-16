@@ -6,7 +6,7 @@ require('es6-promise').polyfill()
 var StackTrace = require('stacktrace-js')
 
 describe('A suite', function() {
-  it('contains spec with an expectation', function(done) {
+  it('contains spec with a source map expectation', function(done) {
     try {
       Opal.Foobar.$howdy()
       // expected exception, didn't get one

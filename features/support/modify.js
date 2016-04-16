@@ -3,8 +3,11 @@
 const bluebird = require('bluebird')
 const path = require('path')
 const writeFile = bluebird.promisify(require('fs').writeFile)
+const copy = bluebird.promisify(require('fs-extra').copy)
 
 module.exports = function () {
+  const integrationPath = path.join(__dirname, '../../test/integration')
+
   this.When(/^I add a new spec file$/, function () {
     const newSpecFile = path.join(this.testDir, 'new_test.js')
     const specText = "describe('A suite', function() {\n" +
@@ -47,5 +50,25 @@ module.exports = function () {
     const depFile = path.join(this.testDir, 'missing_dependency.js')
     const fileText = "module.exports = function() { return 'foobar' }"
     return writeFile(depFile, fileText)
+  })
+
+  this.When(/^I add a new spec that queries source maps$/, function() {
+    const smapDir = path.join(integrationPath, 'opal_smap_from_js')
+    const dependencyPath = path.join(smapDir, 'dependency.rb')
+    const testPath = path.join(smapDir, 'source_map_test.js')
+    const testDir = this.testDir
+    return copy(dependencyPath, path.join(testDir, 'dependency.rb')).then(function() {
+      return copy(testPath, path.join(testDir, 'source_map_test.js'))
+    })
+  })
+
+  this.When(/^I add a failing source mapped spec file$/, function() {
+    const smapDir = path.join(integrationPath, 'opal_fail')
+    const dependencyPath = path.join(smapDir, 'dependency.rb')
+    const testPath = path.join(smapDir, 'something_test.js')
+    const testDir = this.testDir
+    return copy(dependencyPath, path.join(testDir, 'dependency.rb')).then(function() {
+      return copy(testPath, path.join(testDir, 'something_test.js'))
+    })
   })
 }

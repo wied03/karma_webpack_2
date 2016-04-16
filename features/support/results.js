@@ -29,7 +29,7 @@ module.exports = function () {
           }
           else {
             const passString = 'Executed 1 of 1 SUCCESS'
-            const failString = 'Executed 1 of 1 FAIL'
+            const failString = 'Executed 1 of 1 (1 FAILED)'
             const doSee = passFail === 'passes' ? passString : failString
             expect(world.karmaOutput).to.include(doSee)
             const doNotSee = passFail === 'passes' ? failString : passString
@@ -80,8 +80,28 @@ module.exports = function () {
     })
   })
 
-  this.Then(/^the Karma output contains '(.*)'$/, function (output) {
-    expect(this.karmaOutput).to.include(output)
+  this.Then(/^the Karma output contains '(.*)'$/, function (output, callback) {
+    if (this.karmaProcess) {
+      const world = this
+      const operation = retry.operation()
+
+      operation.attempt(function(currentAttempt) {
+        try {
+          expect(world.karmaOutput).to.include(output)
+          return callback()
+        }
+        catch (err) {
+          if (operation.retry(err)) {
+            return
+          }
+          callback(err)
+        }
+      })
+    }
+    else {
+      expect(this.karmaOutput).to.include(output)
+      callback()
+    }
   })
 
   this.Then(/^the Karma output does not contain '(.*)'$/, function (output) {

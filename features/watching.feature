@@ -53,7 +53,7 @@ Feature: File watching
     {
         "A suite": {
             "contains spec with an expectation": "PASSED",
-            "contains spec 2 with a source map query": "PASSED"
+            "contains spec with a source map expectation": "PASSED"
         }
     }
     """
@@ -64,5 +64,4 @@ Feature: File watching
     And I run the Karma test and keep Karma running
     And the test passes
     When I add a failing source mapped spec file
-    Then the test fails
-    And the Karma output contains 'webpack:///test/dependency.rb:5:11'
+    Then the Karma output contains 'webpack:///test/dependency.rb:5:11'
