@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Karma webpack loader",
   "main": "lib/index.js",
+  "files": ["lib"],
+  "keywords": ["karma-plugin", "webpack", "karma"],
   "scripts": {
     "cucumber": "cucumber.js",
     "eslint": "eslint lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
@@ -18,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/wied03/karma_webpack_2/issues"
   },
-  "homepage": "https://github.com/wied03/karma_webpack_2#readme",
+  "homepage": "https://github.com/wied03/karma_webpack_2",
   "devDependencies": {
     "bluebird": "^3.3.5",
     "chai": "^3.5.0",
