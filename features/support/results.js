@@ -22,7 +22,7 @@ module.exports = function () {
       const world = this
       const operation = retry.operation()
 
-      operation.attempt(function(currentAttempt) {
+      operation.attempt(function() {
         try {
           if (passFail === 'errors') {
             expect(world.karmaOutput).to.include('ERROR')
@@ -61,9 +61,8 @@ module.exports = function () {
     const expectedClean = JSON.stringify(JSON.parse(expectedJson))
     const actualFilename = path.resolve(this.karmaTmpDir, 'test_run.json')
 
-    const world = this
     const operation = retry.operation()
-    operation.attempt(function(currentAttempt) {
+    operation.attempt(function() {
       readFile(actualFilename, function (err, data) {
         try {
           const actualClean = JSON.stringify(JSON.parse(data.toString()))
@@ -85,7 +84,7 @@ module.exports = function () {
       const world = this
       const operation = retry.operation()
 
-      operation.attempt(function(currentAttempt) {
+      operation.attempt(function() {
         try {
           expect(world.karmaOutput).to.include(output)
           return callback()
