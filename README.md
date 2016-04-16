@@ -7,13 +7,76 @@
 This is a fresh Karma webpack loader whose primary aim is to be test driven and simple
 (currently still in development)
 
-Functionality:
-* Allow webpack config within Karma (or merge in from outside)
-* Source map friendly
+## Functionality:
+* Webpack configuration specified within Karma config file
+* Source map friendly (can be used automatically in results or made available to frameworks)
 * Allows specifying other files to Karma outside of your webpack bundle
 
-Limitations:
+## Installation:
+
+```bash
+npm install karma karma-webpack_2 --save-dev
+```
+
+## Configuration:
+
+This is the simplest case:
+```js
+module.exports = function(config) {
+  config.set({
+    files: [],
+    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    webpack: {
+      entry: ['./entry_point.js']
+    }
+    ...
+  })
+}
+```
+
+`webpack` is a webpack configuration hash. Here is an example using a different loader:
+```js
+module.exports = function(config) {
+  config.set({
+    files: [],
+    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    webpack: {
+      entry: ['./entry_point.js'],
+      module: {
+        loaders: [
+          {
+            test: /\.rb$/,
+            loader: 'opal-webpack'
+          }
+        ]
+      }
+    }
+    ...
+  })
+}
+```
+
+If source maps are enabled in webpack, they will be served to Karma AND displayed in the results (if karma-sourcemap-loader is used). Given there is some overhead in loading source maps in the results, you may only wish to make them available in the browser/launcher you are using and not load them until requested. To do that, use a configuration like this:
+
+```js
+module.exports = function(config) {
+  config.set({
+    files: [],
+    frameworks: ['webpack', 'jasmine'], // Jasmine not required, use whichever framework you want
+    webpack: {
+      entry: ['./entry_point.js']
+    },
+    karmaWebpack: {
+      sourceMapResults: false
+    }
+    ...
+  })
+}
+```
+
+## Limitations:
 * Does not rely on [webpack dev middleware](https://github.com/webpack/webpack-dev-middleware) due to lack of tests for that project
+* Webpack config is not automatically read from `webpack.config.js` for you. You could do that manually in your Karma config for now.
 
 Copyright (c) 2016, BSW Technology Consulting LLC
 All rights reserved.
