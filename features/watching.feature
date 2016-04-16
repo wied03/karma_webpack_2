@@ -5,7 +5,7 @@ Feature: File watching
     And the simple.js Karma config file
     And I run the Karma test and keep Karma running
     And the test passes
-    When I add a new spec file and wait
+    When I add a new spec file
     Then the test passes with JSON results:
     """
     {
@@ -21,7 +21,7 @@ Feature: File watching
     And the simple.js Karma config file
     And I run the Karma test and keep Karma running
     And the test passes
-    When I add a new spec to the entry point and wait
+    When I add a new spec to the entry point
     Then the test passes with JSON results:
     """
     {
@@ -37,9 +37,9 @@ Feature: File watching
     And the simple.js Karma config file
     And I run the Karma test and keep Karma running
     And the test passes
-    And I add a spec with a missing dependency and wait
+    And I add a spec with a missing dependency
     And the test fails
-    When I correct the missing dependency and wait
+    When I correct the missing dependency
     Then the test passes
 
   Scenario: Source maps from JS
@@ -47,7 +47,7 @@ Feature: File watching
     And the source_maps_avail.js Karma config file
     And I run the Karma test and keep Karma running
     And the test passes
-    When I add a new spec that queries source maps and wait
+    When I add a new spec that queries source maps
     Then the test passes with JSON results:
     """
     {
@@ -63,6 +63,6 @@ Feature: File watching
     And the source_maps_result.js Karma config file
     And I run the Karma test and keep Karma running
     And the test passes
-    When I add a failing source mapped spec file and wait
+    When I add a failing source mapped spec file
     Then the test fails
     And the Karma output contains 'webpack:///test/dependency.rb:5:11'

@@ -2,10 +2,9 @@
 
 const expect = require('chai').expect
 const assert = require('chai').assert
-const bluebird = require('bluebird')
 const path = require('path')
 const retry = require('retry')
-const readFile = bluebird.promisify(require('fs').readFile)
+const readFile = require('fs').readFile
 
 module.exports = function () {
   function assertKarmaStatus(world, passFail) {
@@ -48,14 +47,31 @@ module.exports = function () {
     }
   })
 
-  this.Then(/^the test (\S+) with JSON results:$/, function (passFail, expectedJson) {
-    assertKarmaStatus(this, passFail)
+  this.Then(/^the test (\S+) with JSON results:$/, function (passFail, expectedJson, callback) {
+    // won't have exited yet to get a status if we're still running
+    if (!this.karmaProcess) {
+      assertKarmaStatus(this, passFail)
+    }
+
     const expectedClean = JSON.stringify(JSON.parse(expectedJson))
     const actualFilename = path.resolve(this.karmaTmpDir, 'test_run.json')
 
-    return readFile(actualFilename).then(function(data) {
-      const actualClean = JSON.stringify(JSON.parse(data.toString()))
-      expect(actualClean).to.eq(expectedClean)
+    const world = this
+    const operation = retry.operation()
+    operation.attempt(function(currentAttempt) {
+      readFile(actualFilename, function (err, data) {
+        try {
+          const actualClean = JSON.stringify(JSON.parse(data.toString()))
+          expect(actualClean).to.eq(expectedClean)
+          return callback()
+        }
+        catch (err) {
+          if (operation.retry(err)) {
+            return
+          }
+          callback(err)
+        }
+      })
     })
   })
 
