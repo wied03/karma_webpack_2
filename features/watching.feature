@@ -1,4 +1,4 @@
-Feature: file watching
+Feature: File watching
 
   Scenario: New spec added
     Given the 'passing' tests

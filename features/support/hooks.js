@@ -11,4 +11,10 @@ module.exports = function () {
       return mkdir(tmpDir)
     })
   })
+
+  this.After(function() {
+    if (this.karmaProcess) {
+      this.karmaProcess.kill('SIGINT')
+    }
+  })
 }
