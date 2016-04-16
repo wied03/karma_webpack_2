@@ -4,10 +4,11 @@ const expect = require('chai').expect
 const assert = require('chai').assert
 const bluebird = require('bluebird')
 const path = require('path')
+const retry = require('retry')
 const readFile = bluebird.promisify(require('fs').readFile)
 
 module.exports = function () {
-    function assertKarmaStatus(world, passFail) {
+  function assertKarmaStatus(world, passFail) {
     const karmaMessaging = `stdout: ${world.karmaOutput}\nstderr:${world.karmaError}`
     if (passFail === 'passes') {
       assert(world.karmaSuccess, `Expected Karma to succeed, but it failed! ${karmaMessaging}`)
@@ -17,15 +18,33 @@ module.exports = function () {
     }
   }
 
-  this.Then(/^the test (\S+)$/, function (passFail) {
+  this.Then(/^the test (\S+)$/, function (passFail, callback) {
     if (this.karmaProcess) {
-      const doSee = passFail === 'passes' ? 'PASSED' : 'FAILED'
-      expect(this.karmaOutput).to.include(doSee)
-      const doNotSee = passFail === 'passes' ? 'FAILED' : 'PASSED'
-      expect(this.karmaOutput).to.not.include(doNotSee)
+      const world = this
+      const operation = retry.operation()
+
+      operation.attempt(function(currentAttempt) {
+        try {
+          const passString = 'Executed 1 of 1 SUCCESS'
+          const failString = 'Executed 1 of 1 FAIL'
+          const doSee = passFail === 'passes' ? passString : failString
+          expect(world.karmaOutput).to.include(doSee)
+          const doNotSee = passFail === 'passes' ? failString : passString
+          expect(world.karmaOutput).to.not.include(doNotSee)
+          return callback()
+        }
+        catch (err) {
+          if (operation.retry(err)) {
+            return
+          }
+
+          callback(err)
+        }
+      })
     }
     else {
       assertKarmaStatus(this, passFail)
+      callback()
     }
   })
 

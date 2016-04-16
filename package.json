@@ -36,6 +36,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "opal-webpack": "^1.0.4",
     "require-self": "^0.1.0",
+    "retry": "^0.9.0",
     "rimraf": "^2.5.2",
     "stacktrace-js": "^1.1.0",
     "webpack": "^1.12.15"
