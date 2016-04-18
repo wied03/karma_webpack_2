@@ -36,7 +36,7 @@ module.exports = function(config) {
 }
 ```
 
-`webpack` is a webpack configuration hash. Here is an example using a different loader:
+`webpack` is the standard webpack configuration object. Here is an example using a different loader:
 ```js
 module.exports = function(config) {
   config.set({
@@ -59,7 +59,7 @@ module.exports = function(config) {
 }
 ```
 
-If source maps are enabled in webpack, they will be served to Karma AND displayed in the results (if karma-sourcemap-loader is used). Given there is some overhead in loading source maps in the results, you may only wish to make them available in the browser/launcher you are using and not load them until requested. To do that, use a configuration like this:
+If source maps are enabled in webpack, they will be served to Karma AND displayed in the results (if something like karma-sourcemap-loader is used). Given there is some overhead in loading source maps in the results, you may only wish to make them available in the browser/launcher you are using and not load them until requested. To do that, use a configuration like this:
 
 ```js
 module.exports = function(config) {
@@ -68,7 +68,8 @@ module.exports = function(config) {
     frameworks: ['jasmine'], // Jasmine not required, use whichever framework you want
     middleware: ['webpack'],
     webpack: {
-      entry: ['./entry_point.js']
+      entry: ['./entry_point.js'],
+      devtool: 'source-map'
     },
     karmaWebpack: {
       sourceMapResults: false
