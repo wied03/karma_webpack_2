@@ -1,6 +1,6 @@
 {
   "name": "karma-webpack_2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Karma webpack loader",
   "main": "lib/index.js",
   "files": [
