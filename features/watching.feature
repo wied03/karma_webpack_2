@@ -33,7 +33,21 @@ Feature: File watching
     """
 
   Scenario: Multiple entry points, only 1 output modified
-    Given a complete scenario
+    Given the 'passing' tests
+    And the vendor_entry.js Karma config file
+    And I run the Karma test and keep Karma running
+    And the test passes
+    When I add a new spec file
+    Then the test passes with JSON results:
+    """
+    {
+        "A suite": {
+            "contains spec with an expectation": "PASSED",
+            "contains spec 2 with an expectation": "PASSED"
+        }
+    }
+    """
+    And the vendor file is fetched 1 time
 
   Scenario: Missing dependency added and then corrected
     Given the 'passing' tests
