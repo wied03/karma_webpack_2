@@ -32,6 +32,9 @@ Feature: File watching
     }
     """
 
+  Scenario: Multiple entry points, only 1 output modified
+    Given a complete scenario
+
   Scenario: Missing dependency added and then corrected
     Given the 'passing' tests
     And the simple.js Karma config file
