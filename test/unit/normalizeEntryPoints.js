@@ -5,7 +5,7 @@ const webpack = require('webpack')
 
 const proxyquire = require('proxyquire')
 const tmpStub = {
-  fileSync: function(options) {
+  fileSync: function() {
     return {
       name: '/some_tmp/dir/tmp_bundle_file.js'
     }
@@ -123,7 +123,7 @@ describe('normalizeEntryPoints', function() {
           vendor22: ['foobar']
         },
         plugins: [
-          new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor22", /* filename= */ "vendor22.bundle.js")
+          new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ 'vendor22', /* filename= */ 'vendor22.bundle.js')
         ]
       }
 
@@ -153,7 +153,7 @@ describe('normalizeEntryPoints', function() {
           vendor: 'foobar'
         },
         plugins: [
-          new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "vendor.bundle.js")
+          new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ 'vendor', /* filename= */ 'vendor.bundle.js')
         ]
       }
 

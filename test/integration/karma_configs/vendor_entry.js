@@ -22,7 +22,7 @@ module.exports = function(config) {
         vendor: ['./test/dependency']
       },
       plugins: [
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js')
       ]
     },
 
