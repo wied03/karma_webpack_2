@@ -8,7 +8,7 @@ const writeFile = bluebird.promisify(require('fs').writeFile)
 
 module.exports = function () {
   this.Then(/^webpack logged informational messages$/, function () {
-    expect(this.karmaOutput).to.include('chunk    {0} bundle_karma.js')
+    expect(this.karmaOutput).to.include('chunk    {0} main.bundle.js')
   })
 
   this.Given(/^an existing webpack bundle$/, function () {

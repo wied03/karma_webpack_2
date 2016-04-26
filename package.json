@@ -12,6 +12,7 @@
     "karma"
   ],
   "scripts": {
+    "mocha": "mocha test/unit",
     "cucumber": "cucumber.js",
     "eslint": "eslint lib test features --ignore-pattern test/karma-orspec-json-reporter/*.js",
     "jshint": "jshint lib test features --exclude test/integration/.*",
@@ -42,7 +43,9 @@
     "karma-orspec-json-reporter": "file:./test/karma-orspec-json-reporter",
     "karma-phantomjs2-launcher": "^0.5.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "opal-webpack": "^1.0.4",
+    "mocha": "^2.4.5",
+    "opal-webpack": "^1.0.7",
+    "proxyquire": "^1.7.4",
     "require-self": "^0.1.0",
     "retry": "^0.9.0",
     "rimraf": "^2.5.2",
@@ -50,6 +53,7 @@
     "webpack": "^1.12.15"
   },
   "dependencies": {
-    "memory-fs": "^0.3.0"
+    "memory-fs": "^0.3.0",
+    "tmp": "0.0.28"
   }
 }

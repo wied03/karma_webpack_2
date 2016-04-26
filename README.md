@@ -12,6 +12,7 @@ This is a fresh Karma webpack loader whose primary aim is to be test driven and 
 * Source map friendly (can be used automatically in results or made available to frameworks)
 * Allows specifying other files to Karma outside of your webpack bundle
 * Uses in memory filesytem for bundle location (but still allows filesystem caching for loaders like Babel, Opal)
+* Commons chunk support
 
 ## Installation:
 
@@ -36,6 +37,10 @@ module.exports = function(config) {
 }
 ```
 
+Since this plugin is feeding output into Karma, it defines the Webpack output config and overwrites whatever you supply (see below re: commons chunk support).
+
+### Custom loaders
+
 `webpack` is the standard webpack configuration object. Here is an example using a different loader:
 ```js
 module.exports = function(config) {
@@ -59,6 +64,7 @@ module.exports = function(config) {
 }
 ```
 
+### Source maps
 If source maps are enabled in webpack, they will be served to Karma AND displayed in the results (if something like karma-sourcemap-loader is used). Given there is some overhead in loading source maps in the results, you may only wish to make them available in the browser/launcher you are using and not load them until requested. To do that, use a configuration like this:
 
 ```js
@@ -78,6 +84,31 @@ module.exports = function(config) {
   })
 }
 ```
+
+### Commons chunk
+If you use the commons chunk Webpack plugin, this tool will find the name of the "vendor" entry point you have declared and have Karma serve that up before your main entry points. Here is an example:
+
+```js
+module.exports = function(config) {
+  config.set({
+    files: [],
+    frameworks: ['jasmine'], // Jasmine not required, use whichever framework you want
+    middleware: ['webpack'],
+    webpack: {
+      entry: {
+        app: './entry_point.js',
+        vendor: ['jquery']
+      },
+      plugins: [
+        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js')
+      ]
+    }
+    ...
+  })
+}
+```
+
+With this config, `vendor.bundle.js` will be served followed by `app.bundle.js`
 
 ## Limitations:
 * Does not rely on [webpack dev middleware](https://github.com/webpack/webpack-dev-middleware) due to lack of tests for that project. It does however use the [memory-fs filesystem](https://github.com/webpack/memory-fs)

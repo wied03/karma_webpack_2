@@ -5,6 +5,7 @@
   "node": true,
   "globals": {
     "describe": true,
+    "context": true,
     "it": true,
     "expect": true
   }
