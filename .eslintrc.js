@@ -22,6 +22,7 @@ module.exports = {
     },
     "globals": {
         "describe": true,
+        "beforeEach": true,
         "context": true,
         "it": true,
         "expect": true,

@@ -6,6 +6,7 @@
   "globals": {
     "describe": true,
     "context": true,
+    "beforeEach": true,
     "it": true,
     "expect": true
   }

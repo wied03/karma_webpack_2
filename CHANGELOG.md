@@ -1,3 +1,6 @@
+# v1.0.3:
+* Fix source map regression in non root paths
+
 # v1.0.2:
 * Deal with multiple entry points including commons chunk
 
